@@ -56,10 +56,24 @@ namespace Exercise.WordBuilder
 
         public async Task<byte[]> Build()
         {
-            document.GenerateTableOfContents();
+            GenerateTableOfContents();
             return await WordGenerator.GenerateDocument(document);
         }
-       
+
+        /// <summary>
+        /// Inhaltsverzeichnis erstellen
+        /// </summary>
+        private void GenerateTableOfContents()
+        {
+            int currentPage = 2;
+            document.TableOfContents.Clear();
+
+            foreach (var part in document.Chapters)
+            {
+                document.TableOfContents.Add(part.Header.PadRight(57, '.') + currentPage.ToString().PadLeft(3, '.'));
+                currentPage += part.Pages;
+            }
+        }
 
     }
 }

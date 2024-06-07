@@ -46,22 +46,5 @@ namespace Exercise.WordBuilder.Models
         /// Kapitel des Buches
         /// </summary>
         public List<Chapter> Chapters = new List<Chapter>();
-
-        /// <summary>
-        /// Inhaltsverzeichnis erstellen
-        /// </summary>
-        /// <param name="create">Soll ein Inhaltsverzeichnis erstellt werden</param>
-        public void GenerateTableOfContents()
-        {
-            int currentPage = 2;
-            TableOfContents.Clear();
-
-            foreach (var part in Chapters)
-            {
-                TableOfContents.Add(part.Header.PadRight(57, '.') + currentPage.ToString().PadLeft(3, '.'));
-                currentPage += part.Pages;
-            }
-        }
-
     }
 }
